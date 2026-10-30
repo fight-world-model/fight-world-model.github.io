@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Fight World Model connects executable combat rules to video generation through visual interaction proxies. Explore the method, paper results, and FightWorld Corpus.">
+  <meta property="og:title" content="Fight World Model">
+  <meta property="og:description" content="Customizable combat through visual interaction proxies.">
+  <meta property="og:image" content="media/hero.jpg">
+  <title>Fight World Model | Customizable combat through visual interaction proxies</title>
+  <link rel="icon" type="image/svg+xml" href="media/fwm-favicon.svg">
+  <link rel="preload" href="fonts/pixelify-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/institutions.css">
+  <script src="js/cases.js" defer></script>
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <video id="backdrop-video" autoplay muted loop playsinline poster="media/hero.jpg" src="media/hero.mp4" preload="metadata"></video>
+    <div class="veil"></div>
+  </div>
+  <a class="skip" href="#overview">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Fight World Model home"><img src="media/fwm-logo.svg" alt="" width="64" height="48"></a>
+    <nav aria-label="Page sections"><ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#screening">Screening</a></li>
+      <li><a href="#proxy">Proxy</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#corpus">Corpus</a></li>
+      <li><a href="#results">Results</a></li>
+    </ul></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy">
+        <h1 id="title" class="reveal reveal-d1">Fight World Model</h1>
+        <p class="paper-title reveal reveal-d2">Customizable combat through<br class="desktop-break"> visual interaction proxies</p>
+        <p class="hero-line reveal reveal-d3">Execute the rules. Render the fight.</p>
+        <p class="authors reveal reveal-d3">Jiahua Li<sup>1</sup> &nbsp; Zixu John<sup>2</sup> &nbsp; Tom Zhong<sup>2</sup> &nbsp; Fuping Wu<sup>3</sup><br>Tianhao Xu<sup>2</sup> &nbsp; Ruicheng Zhang<sup>4</sup> &nbsp; Jun Zhou<sup>4</sup> &nbsp; Zunnan Xu<sup>5,*</sup></p>
+        <p class="affiliations reveal reveal-d3"><span><sup>1</sup> University of Oxford</span><span><sup>2</sup> Independent Researcher</span><span><sup>3</sup> Imperial College London</span><span><sup>4</sup> Tsinghua University</span><span><sup>5</sup> Nanyang Technological University</span></p>
+        <div class="institution-logos reveal reveal-d4" role="group" aria-label="Author universities">
+          <a class="institution-logo" href="https://www.ox.ac.uk/" target="_blank" rel="noopener" aria-label="University of Oxford">
+            <span class="institution-mark"><img src="media/schools/oxford-pixel.png" alt="Pixel-art University of Oxford crest" width="64" height="64"></span>
+            <span class="institution-name">Oxford</span>
+          </a>
+          <a class="institution-logo institution-logo-imperial" href="https://www.imperial.ac.uk/" target="_blank" rel="noopener" aria-label="Imperial College London">
+            <span class="institution-mark"><img src="media/schools/imperial-pixel.png" alt="Pixel-art Imperial wordmark" width="140" height="36"></span>
+            <span class="institution-name">College London</span>
+          </a>
+          <a class="institution-logo" href="https://www.tsinghua.edu.cn/" target="_blank" rel="noopener" aria-label="Tsinghua University">
+            <span class="institution-mark"><img src="media/schools/tsinghua-pixel.png?v=white" alt="Pixel-art Tsinghua University seal with white fill and purple outlines" width="64" height="64"></span>
+            <span class="institution-name">Tsinghua</span>
+          </a>
+          <a class="institution-logo" href="https://www.ntu.edu.sg/" target="_blank" rel="noopener" aria-label="Nanyang Technological University, Singapore">
+            <span class="institution-mark"><img src="media/schools/ntu-pixel.png" alt="Pixel-art Nanyang Technological University shield" width="64" height="64"></span>
+            <span class="institution-name">NTU Singapore</span>
+          </a>
+        </div>
+        <div class="hero-actions reveal reveal-d4">
+          <a class="button" href="https://arxiv.org/pdf/2610.40607" target="_blank" rel="noopener">Read the paper</a>
+          <a class="button" href="https://github.com/fight-world-model/FWM" target="_blank" rel="noopener" aria-label="View FWM code on GitHub">Code</a>
+          <a class="button" href="#screening">Explore the visuals <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-foot"><span>Executable state / Conditional video</span><a href="#overview">Scroll to explore <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section class="chapter" id="overview">
+      <div class="wrap">
+        <p class="kicker"><span>00</span><em>The idea</em></p>
+        <h2>Every hit has a consequence.</h2>
+        <p class="standfirst">A protected fighter can react without losing health. Lifesteal can heal the attacker. FWM connects these executable rules to the frames you see.</p>
+        <figure class="plate teaser">
+          <a href="media/figures/figure1.pdf" target="_blank" rel="noopener" aria-label="Open the customizable combat overview figure"><img src="media/figures/figure1.png" width="2200" height="700" alt="Character and arena customization, the FWM execution-to-rendering pipeline, and controllable combat skills." loading="lazy"></a>
+          <figcaption><span>Fight World Model</span><span>Rules → Interaction proxy → Video</span></figcaption>
+        </figure>
+        <div class="principles">
+          <article><span class="num">01 / Execute</span><h3>Resolve the interaction.</h3><p>The engine updates fighter state, resolves hits, and applies the active rules.</p></article>
+          <article><span class="num">02 / Compile</span><h3>Put outcomes on a timeline.</h3><p>A visual proxy aligns actions, reactions, and health with each fighter and frame.</p></article>
+          <article><span class="num">03 / Render</span><h3>Give the fight its appearance.</h3><p>A shared video renderer follows the proxy and the character or arena references.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="screening">
+      <div class="wrap">
+        <p class="kicker"><span>01</span><em>Screening room</em></p>
+        <h2>Many ways to stage a fight.</h2>
+        <p class="standfirst">Characters, arenas, and skill effects in FightWorld Corpus.</p>
+        <p class="source-note">The videos in this screening room and the corpus gallery are edited training samples. FWM inference comparisons appear in the paper figures below.</p>
+        <div class="screening" data-screening="characters">
+          <header><p class="overline">Appearance / Identity</p><h3>A new face in the arena.</h3></header>
+          <div class="selection" aria-label="Character samples"></div>
+          <div class="screen-content"></div>
+        </div>
+        <div class="screening" data-screening="arenas">
+          <header><p class="overline">Appearance / Environment</p><h3>Take the fight somewhere else.</h3></header>
+          <div class="selection" aria-label="Arena samples"></div>
+          <div class="screen-content"></div>
+        </div>
+        <div class="screening" data-screening="skills">
+          <header><p class="overline">Effects / Casting windows</p><h3>Set the skill in motion.</h3></header>
+          <div class="selection" aria-label="Skill samples"></div>
+          <div class="screen-content"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="proxy">
+      <div class="wrap">
+        <p class="kicker"><span>02</span><em>Under the image</em></p>
+        <h2>One canvas. A shared timeline.</h2>
+        <p class="standfirst">Attempted actions, transient reactions, and persistent health have separate marks. Fighter identity ties them together, even when the fighters switch sides.</p>
+        <figure class="plate">
+          <a href="media/figures/proxy-grammar.pdf" target="_blank" rel="noopener" aria-label="Open the interaction proxy vocabulary figure"><img src="media/figures/proxy-grammar.png" width="2200" height="1162" alt="Interaction proxy vocabulary with fighter boxes, identity colors, punch and kick stripes, a skill-casting marker, reaction inversions, and health bars." loading="lazy"></a>
+          <figcaption><span>Interaction proxy vocabulary</span><span>Identity · Space · Time</span></figcaption>
+        </figure>
+        <div class="state-layout">
+          <div><h3>Actions and skill windows.</h3><p>Horizontal stripes mark punches. Vertical stripes mark kicks. Coverage encodes strength. A magenta block follows the caster during a skill window.</p></div>
+          <div><h3>Reactions and health.</h3><p>A brief color inversion marks a reaction. Bar length independently records health. Edited rules can change one without changing the other.</p></div>
+        </div>
+        <details class="figure-details"><summary>Inside the model <span aria-hidden="true">+</span></summary>
+          <p>The engine executes the rules, the compiler rasterizes the records, and a video diffusion transformer renders the continuation. Shared identity embeddings bind references to the intended fighter.</p>
+          <figure class="plate"><a href="media/figures/figure2.pdf" target="_blank" rel="noopener"><img src="media/figures/figure2.png" width="2200" height="1256" alt="FWM architecture: proxy engine, deterministic interaction proxy compilation, a video diffusion transformer, and appearance and identity binding." loading="lazy"></a><figcaption><span>Model architecture</span><span>Figure 2 in the paper</span></figcaption></figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="chapter" id="rules">
+      <div class="wrap">
+        <p class="kicker"><span>03</span><em>Executable rules</em></p>
+        <h2>Change the rule. Recompute the fight.</h2>
+        <p class="standfirst">The engine reruns the same initial state and submitted actions under edited rules. The resulting proxy changes. The trained renderer stays the same.</p>
+        <div class="rule-layout">
+          <div class="rule-list" aria-label="Rule intervention results"></div>
+          <div class="rule-result" aria-live="polite"></div>
+        </div>
+        <p class="metric-note">Source: the paper's rule intervention study. Health MAE is in percentage points of maximum health. Joint rule fidelity requires the applicable reaction and health checks to pass together. These are reported evaluation results.</p>
+        <figure class="plate">
+          <a href="media/figures/skill-mechanisms.pdf" target="_blank" rel="noopener" aria-label="Open the multi-stage skill mechanisms figure"><img src="media/figures/skill-mechanisms.png" width="2200" height="1557" alt="FWM paper rollouts of multi-stage combat mechanisms, including ground damage, projectile hits, staggered impacts, action locks, and spatial confinement." loading="lazy"></a>
+          <figcaption><span>Beyond native combat</span><span>FWM inference / Paper figure</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="chapter" id="corpus">
+      <div class="wrap">
+        <p class="kicker"><span>04</span><em>FightWorld Corpus</em></p>
+        <h2>A broader vocabulary of combat.</h2>
+        <p class="standfirst">Native gameplay and edited videos share the same training format, with interaction proxies, text descriptions, and available appearance references.</p>
+        <div class="stat-row">
+          <div><b>112,618</b><span>Training samples</span></div>
+          <div><b>52</b><span>Skill effects</span></div>
+          <div><b>187</b><span>Character appearances</span></div>
+          <div><b>15</b><span>Arenas</span></div>
+        </div>
+        <div class="gallery-heading"><h3>The sample archive.</h3><p>74 selected corpus clips. Open a sample to compare its video, proxy, and reference.</p></div>
+        <div class="gallery-toolbar">
+          <div class="filters" role="group" aria-label="Filter corpus samples">
+            <button type="button" data-filter="all" aria-pressed="true">All <span>74</span></button>
+            <button type="button" data-filter="Ryu" aria-pressed="false">Player <span>26</span></button>
+            <button type="button" data-filter="Guile" aria-pressed="false">Opponent <span>14</span></button>
+            <button type="button" data-filter="Scene" aria-pressed="false">Arenas <span>13</span></button>
+            <button type="button" data-filter="VFX" aria-pressed="false">Skills <span>21</span></button>
+          </div>
+          <label class="search"><span class="sr-only">Search corpus samples</span><input type="search" id="gallery-search" placeholder="Find a sample…" autocomplete="off"><span aria-hidden="true">⌕</span></label>
+        </div>
+        <p id="gallery-status" class="gallery-status" aria-live="polite"></p>
+        <div class="gallery" id="gallery"></div>
+        <div class="load-row"><button type="button" class="button" id="load-more">Show more samples <span aria-hidden="true">↓</span></button></div>
+        <noscript><p>Enable JavaScript to browse the interactive sample archive.</p></noscript>
+      </div>
+    </section>
+
+    <section class="chapter" id="results">
+      <div class="wrap">
+        <p class="kicker"><span>05</span><em>Evaluation</em></p>
+        <h2>The whole interaction has to agree.</h2>
+        <p class="standfirst">Joint fidelity checks actions, entity assignment, timing, reactions, and persistent health together. All complete-information encodings below receive the same executed records.</p>
+        <div class="score-lockup">
+          <div><b>98.48<span>%</span></b><p>Joint interaction fidelity</p></div>
+          <div><b>99.79<span>%</span></b><p>Correct hit reactions</p></div>
+          <div><b>0.15<span> pp</span></b><p>Health mean absolute error</p></div>
+        </div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of control representations">
+          <table>
+            <caption>Source: the paper's control representation study, complete-information encodings. Rates are percentages; Health MAE is in percentage points of maximum health. Higher is better except Health MAE.</caption>
+            <thead><tr><th scope="col">Control representation</th><th scope="col">Move ↑</th><th scope="col">Attack ↑</th><th scope="col">Skill ↑</th><th scope="col">Reaction ↑</th><th scope="col">Health MAE ↓</th><th scope="col">Joint ↑</th></tr></thead>
+            <tbody><tr><th scope="row">Spatial proxy + state tokens</th><td>94.48</td><td>91.23</td><td>82.42</td><td>87.17</td><td>1.23</td><td>63.28</td></tr><tr><th scope="row">Spatial proxy + text</th><td>96.72</td><td>93.63</td><td>92.43</td><td>92.24</td><td>2.78</td><td>76.35</td></tr><tr class="ours"><th scope="row">FWM interaction proxy</th><td>99.78</td><td>99.24</td><td>99.06</td><td>99.79</td><td>0.15</td><td>98.48</td></tr></tbody>
+          </table>
+        </div>
+        <div class="paper-gallery">
+          <figure class="plate"><a href="media/figures/state-representation.pdf" target="_blank" rel="noopener"><img src="media/figures/state-representation.png" width="2200" height="1364" alt="Matched rollout frames comparing spatial proxy with text, spatial proxy with state tokens, and FWM. Health-state errors are annotated." loading="lazy"></a><figcaption><span>Matched interaction records</span><span>FWM / Baseline comparison</span></figcaption></figure>
+          <figure class="plate"><a href="media/figures/skill-timing.pdf" target="_blank" rel="noopener"><img src="media/figures/skill-timing.png" width="2200" height="1445" alt="Comparison of skill timing and consequences across adapted game world models and FWM for a projectile commanded at frame 20." loading="lazy"></a><figcaption><span>Skill timing and consequences</span><span>Commanded at frame 20</span></figcaption></figure>
+        </div>
+        <details class="figure-details"><summary>Appearance across side switches <span aria-hidden="true">+</span></summary><p>Identity binding raises character adherence on side-switch clips from 53.68% to 98.27% under matched reference inputs and training budgets. The identity follows the fighter as its screen position changes. Source: the paper's identity binding study.</p><figure class="plate"><a href="media/figures/appearance-references.pdf" target="_blank" rel="noopener"><img src="media/figures/appearance-references.png" width="2200" height="2064" alt="FWM character and arena reference-conditioned rollouts, including characters exchanging screen sides." loading="lazy"></a><figcaption><span>Character and scene references</span><span>FWM inference</span></figcaption></figure></details>
+        <p class="scope-note">Evaluated in fixed-camera, two-fighter 2D combat with a single video backbone. Transfer to other games, moving cameras, 3D worlds, and more fighters remains to be evaluated.</p>
+        <div class="closing"><p class="overline">Fight World Model</p><h3>From executable rules to visible consequences.</h3><a class="button primary" href="https://arxiv.org/pdf/2610.40607" target="_blank" rel="noopener">Read the full paper <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="colophon"><span>FWM / Fight World Model</span><span>Visuals from FightWorld Corpus &amp; the FWM paper</span><button type="button" id="motion-toggle" aria-pressed="false">Pause background</button><a href="#top">Back to top ↑</a></footer>
+
+  <dialog id="sample-dialog" aria-labelledby="sample-title">
+    <div class="dialog-header"><p class="overline" id="sample-category"></p><button type="button" class="close-dialog" aria-label="Close sample">Close <span aria-hidden="true">×</span></button></div>
+    <h2 id="sample-title"></h2>
+    <p class="source-note">Edited training sample / FightWorld Corpus</p>
+    <div id="sample-content"></div>
+  </dialog>
+</body>
+</html>
